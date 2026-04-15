@@ -1,0 +1,109 @@
+﻿/* ============================================
+   PORTFOLIO PAGE
+   ============================================ */
+
+.portfolio-page {
+  min-height: 100vh;
+  padding-bottom: var(--space-5xl);
+}
+
+.portfolio-hero {
+  padding: var(--space-5xl) 0 var(--space-3xl);
+  text-align: center;
+}
+
+.portfolio-hero__title {
+  font-family: var(--font-display);
+  font-size: clamp(2.8rem, 5vw, 5rem);
+  font-weight: 300;
+  color: var(--color-cream);
+  margin-top: var(--space-md);
+}
+
+.portfolio-hero__title em {
+  font-style: italic;
+  color: var(--color-gold-light);
+}
+
+.portfolio-hero__sub {
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+  max-width: 460px;
+  margin: var(--space-lg) auto 0;
+}
+
+/* ── Masonry-style grid ── */
+.portfolio-grid {
+  columns: 3;
+  column-gap: var(--space-md);
+}
+
+.portfolio-item {
+  break-inside: avoid;
+  margin-bottom: var(--space-md);
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  position: relative;
+  cursor: pointer;
+}
+
+.portfolio-item img {
+  width: 100%;
+  display: block;
+  transition: transform var(--duration-slower) var(--ease-out);
+}
+
+.portfolio-item:hover img {
+  transform: scale(1.04);
+}
+
+.portfolio-item__overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(10, 9, 6, 0);
+  transition: background var(--duration-normal) var(--ease-out);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: var(--space-xl);
+}
+
+.portfolio-item:hover .portfolio-item__overlay {
+  background: rgba(10, 9, 6, 0.6);
+}
+
+.portfolio-item__label {
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity var(--duration-normal) var(--ease-out),
+              transform var(--duration-normal) var(--ease-out);
+}
+
+.portfolio-item:hover .portfolio-item__label {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.portfolio-item__couple {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-style: italic;
+  color: var(--color-cream);
+}
+
+.portfolio-item__location {
+  font-family: var(--font-label);
+  font-size: 0.6rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--color-gold);
+  margin-top: 4px;
+}
+
+@media (max-width: 900px) {
+  .portfolio-grid { columns: 2; }
+}
+
+@media (max-width: 600px) {
+  .portfolio-grid { columns: 1; }
+}
