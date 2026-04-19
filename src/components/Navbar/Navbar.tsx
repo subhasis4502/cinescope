@@ -29,7 +29,7 @@ export default function Navbar() {
       <nav className={`navbar${scrolled ? ' scrolled' : ''}`}>
         <div className="navbar__inner">
           <NavLink to="/" className="navbar__logo" onClick={() => setMobileOpen(false)}>
-            <span className="navbar__logo-main">Spotlight</span>
+            <span className="navbar__logo-main">Cinescope</span>
             <span className="navbar__logo-sub">Wedding Films</span>
           </NavLink>
 

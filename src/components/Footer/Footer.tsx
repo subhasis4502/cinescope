@@ -8,7 +8,7 @@ export default function Footer() {
         <div className="footer__inner">
           {/* Brand */}
           <div className="footer__brand">
-            <div className="footer__logo-main">Spotlight</div>
+            <div className="footer__logo-main">Cinescope</div>
             <span className="footer__logo-sub">Wedding Films</span>
             <p className="footer__tagline">
               Cinematic wedding films that capture the feeling, not just the moments.
@@ -46,7 +46,7 @@ export default function Footer() {
           <div className="footer__col">
             <h4 className="footer__col-title">Contact</h4>
             <ul className="footer__col-links">
-              <li><a href="mailto:hello@spotlightweddings.com">hello@spotlight.com</a></li>
+              <li><a href="mailto:hello@spotlightweddings.com">hello@cinescope.com</a></li>
               <li><a href="tel:+15551234567">+1 (555) 123-4567</a></li>
               <li><a href="#">Available Worldwide</a></li>
             </ul>
@@ -56,7 +56,7 @@ export default function Footer() {
         {/* Bottom bar */}
         <div className="footer__bottom">
           <span className="footer__copy">
-            © {new Date().getFullYear()} Spotlight Wedding Films. All rights reserved.
+            © {new Date().getFullYear()} Cinescope Wedding Films. All rights reserved.
           </span>
           <div className="footer__bottom-links">
             <a href="#">Privacy Policy</a>

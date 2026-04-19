@@ -1,17 +1,17 @@
 ﻿import { useState } from 'react';
 import './FilmsPage.css';
 
-const FILTERS = ['All Films', 'Weddings', 'Elopements', 'Engagement', 'International'];
+const FILTERS = ['All Films', 'Weddings', 'Pre-Wedding', 'Sangeet & Mehendi', 'Destination'];
 
 const FILMS = [
-  { id: 1, couple: 'Emma & Luca', location: 'Lake Como, Italy', duration: '4:32', category: 'Weddings', img: 'https://images.unsplash.com/photo-1519741497674-611481863552?w=1000&q=80' },
-  { id: 2, couple: 'Priya & Rohan', location: 'Jaipur, India', duration: '3:48', category: 'International', img: 'https://images.unsplash.com/photo-1583939003579-730e3918a45a?w=700&q=80' },
-  { id: 3, couple: 'Sofia & Mateo', location: 'Santorini, Greece', duration: '5:10', category: 'Elopements', img: 'https://images.unsplash.com/photo-1606800052052-a08af7148866?w=700&q=80' },
-  { id: 4, couple: 'Ava & Marco', location: 'Tuscany, Italy', duration: '6:22', category: 'Weddings', img: 'https://images.unsplash.com/photo-1526047932273-341f2a7631f9?w=900&q=80' },
-  { id: 5, couple: 'Nadia & Sam', location: 'Maldives', duration: '3:15', category: 'Elopements', img: 'https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?w=600&q=80' },
-  { id: 6, couple: 'Clara & Ben', location: 'New York, USA', duration: '4:55', category: 'Engagement', img: 'https://images.unsplash.com/photo-1522673607200-164d1b6ce486?w=600&q=80' },
-  { id: 7, couple: 'Mei & Kenji', location: 'Kyoto, Japan', duration: '5:30', category: 'International', img: 'https://images.unsplash.com/photo-1553361371-9b22f78e8b1d?w=600&q=80' },
-  { id: 8, couple: 'Isabelle & Thomas', location: 'Provence, France', duration: '7:01', category: 'Weddings', img: 'https://images.unsplash.com/photo-1591604466107-ec97de577aff?w=1600&q=80' },
+  { id: 1, couple: 'Meera & Arjun', location: 'Udaipur, Rajasthan', duration: '4:32', category: 'Weddings', img: 'https://images.unsplash.com/photo-1612833609284-e763f6b47f38?w=1000&q=80' },
+  { id: 2, couple: 'Priya & Rohan', location: 'Jaipur, Rajasthan', duration: '3:48', category: 'Destination', img: 'https://images.unsplash.com/photo-1594818379496-da1e345b0ded?w=700&q=80' },
+  { id: 3, couple: 'Ananya & Vikram', location: 'Jodhpur, Rajasthan', duration: '5:10', category: 'Weddings', img: 'https://images.unsplash.com/photo-1610173827006-d5d8c4f699ea?w=700&q=80' },
+  { id: 4, couple: 'Kavya & Dev', location: 'Mysore, Karnataka', duration: '6:22', category: 'Weddings', img: 'https://images.unsplash.com/photo-1617275249641-322ed29db98c?w=900&q=80' },
+  { id: 5, couple: 'Nisha & Karan', location: 'Goa', duration: '3:15', category: 'Destination', img: 'https://images.unsplash.com/photo-1583939411023-14783179e581?w=600&q=80' },
+  { id: 6, couple: 'Divya & Rahul', location: 'Mumbai, Maharashtra', duration: '4:55', category: 'Sangeet & Mehendi', img: 'https://images.unsplash.com/photo-1620735692151-26a7e0748429?w=600&q=80' },
+  { id: 7, couple: 'Siya & Aditya', location: 'Varanasi, UP', duration: '5:30', category: 'Pre-Wedding', img: 'https://images.unsplash.com/photo-1583939003579-730e3918a45a?w=600&q=80' },
+  { id: 8, couple: 'Pooja & Nikhil', location: 'Coorg, Karnataka', duration: '7:01', category: 'Destination', img: 'https://images.unsplash.com/photo-1606800052052-a08af7148866?w=1600&q=80' },
 ];
 
 export default function FilmsPage() {
@@ -34,7 +34,7 @@ export default function FilmsPage() {
             Stories told in<br /><em>light & motion</em>
           </h1>
           <p className="films-hero__sub">
-            Browse our collection of wedding films, each one a unique document of love.
+            From intimate Mehendi evenings to grand Baraat arrivals — every ceremony, every emotion, beautifully captured.
           </p>
         </div>
       </section>

@@ -1,4 +1,4 @@
-﻿# Spotlight Weddings - Build Instructions
+﻿# Cinescope - Build Instructions
 
 ## Project Goal
 Build a static website for a wedding photographer using React and TypeScript, with a premium glass-style visual language and strong focus on photos/videos.

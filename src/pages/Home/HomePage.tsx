@@ -47,6 +47,8 @@ const COUPLES = [
   { id: 5, names: 'Mia & Carlos', size: 'sm', img: 'https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=400&q=80' },
 ];
 
+const INITIAL_CENTERED_COUPLE_ID = COUPLES[Math.floor(COUPLES.length / 2)].id;
+
 const QUOTES = [
   {
     id: 1,
@@ -116,6 +118,74 @@ export default function HomePage() {
   const statsSection = useInView();
   const testimonialsSection = useInView();
   const servicesSection = useInView();
+  const testimonialsStripRef = useRef<HTMLDivElement>(null);
+  const [centeredCoupleId, setCenteredCoupleId] = useState(INITIAL_CENTERED_COUPLE_ID);
+
+  useEffect(() => {
+    const strip = testimonialsStripRef.current;
+    if (!strip) return;
+
+    let frameId = 0;
+
+    const updateCenteredCard = () => {
+      frameId = 0;
+
+      const cards = Array.from(
+        strip.querySelectorAll<HTMLElement>('[data-couple-card="true"]')
+      );
+
+      if (!cards.length) return;
+
+      const stripRect = strip.getBoundingClientRect();
+      const stripCenter = stripRect.left + stripRect.width / 2;
+
+      let closestId = INITIAL_CENTERED_COUPLE_ID;
+      let closestDistance = Number.POSITIVE_INFINITY;
+
+      cards.forEach((card) => {
+        const rect = card.getBoundingClientRect();
+        const cardCenter = rect.left + rect.width / 2;
+        const distance = Math.abs(stripCenter - cardCenter);
+
+        if (distance < closestDistance) {
+          closestDistance = distance;
+          closestId = Number(card.dataset.coupleId);
+        }
+      });
+
+      setCenteredCoupleId((prev) => (prev === closestId ? prev : closestId));
+    };
+
+    const requestCenteredCardUpdate = () => {
+      if (frameId) cancelAnimationFrame(frameId);
+      frameId = requestAnimationFrame(updateCenteredCard);
+    };
+
+    const middleCard = strip.querySelector<HTMLElement>(
+      `[data-couple-id="${INITIAL_CENTERED_COUPLE_ID}"]`
+    );
+
+    if (middleCard) {
+      const centeredOffset =
+        middleCard.offsetLeft - (strip.clientWidth - middleCard.offsetWidth) / 2;
+
+      strip.scrollTo({
+        left: Math.max(centeredOffset, 0),
+        behavior: 'auto',
+      });
+    }
+
+    requestCenteredCardUpdate();
+
+    strip.addEventListener('scroll', requestCenteredCardUpdate, { passive: true });
+    window.addEventListener('resize', requestCenteredCardUpdate);
+
+    return () => {
+      if (frameId) cancelAnimationFrame(frameId);
+      strip.removeEventListener('scroll', requestCenteredCardUpdate);
+      window.removeEventListener('resize', requestCenteredCardUpdate);
+    };
+  }, []);
 
   return (
     <div className="home-page">
@@ -280,11 +350,13 @@ export default function HomePage() {
           </div>
 
           {/* Photo strip */}
-          <div className="testimonials__strip">
+          <div className="testimonials__strip" ref={testimonialsStripRef}>
             {COUPLES.map((c, i) => (
               <div
                 key={c.id}
-                className={`couple-card couple-card--${c.size}`}
+                className={`couple-card couple-card--${c.size}${centeredCoupleId === c.id ? ' is-centered' : ''}`}
+                data-couple-card="true"
+                data-couple-id={c.id}
                 style={{
                   animation: testimonialsSection.inView
                     ? `fadeUp 0.7s cubic-bezier(0.16,1,0.3,1) ${i * 0.1}s both`
@@ -293,7 +365,7 @@ export default function HomePage() {
               >
                 <img src={c.img} alt={c.names} loading="lazy" />
                 <div className="couple-card__overlay" />
-                {c.size === 'lg' && (
+                {centeredCoupleId === c.id && (
                   <div className="couple-card__names">{c.names}</div>
                 )}
               </div>

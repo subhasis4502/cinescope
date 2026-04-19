@@ -3,8 +3,8 @@
    ============================================ */
 
 .footer {
-  background: var(--color-bg-soft);
-  border-top: 1px solid var(--color-border-soft);
+  background: #1e2b22;
+  border-top: 1px solid rgba(68, 136, 85, 0.2);
   padding: var(--space-4xl) 0 var(--space-2xl);
 }
 
@@ -132,6 +132,20 @@
 .footer__bottom-links a:hover {
   color: var(--color-text-muted);
 }
+
+/* ── Footer-scoped overrides (dark green bg) ── */
+.footer .footer__logo-main  { color: #f5f3ee; }
+.footer .footer__tagline    { color: rgba(189,188,176,0.6); }
+.footer .footer__social-link {
+  border-color: rgba(189,188,176,0.2);
+  color:         rgba(189,188,176,0.5);
+}
+.footer .footer__col-links a { color: rgba(189,188,176,0.55); font-weight: 400; }
+.footer .footer__col-links a:hover { color: var(--color-gold-light); }
+.footer .footer__copy       { color: rgba(189,188,176,0.35); }
+.footer .footer__bottom-links a { color: rgba(189,188,176,0.35); }
+.footer .footer__bottom-links a:hover { color: rgba(189,188,176,0.6); }
+.footer .footer__bottom     { border-top-color: rgba(189,188,176,0.1); }
 
 @media (max-width: 900px) {
   .footer__inner {

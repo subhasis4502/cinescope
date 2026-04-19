@@ -4,32 +4,35 @@
 
 :root {
   /* ── Colors ── */
-  --color-bg:           #0a0906;
-  --color-bg-soft:      #111009;
-  --color-bg-card:      #161410;
-  --color-bg-card-alt:  #1c1915;
-  --color-surface:      #211f1a;
-  --color-border:       rgba(200, 175, 120, 0.15);
-  --color-border-soft:  rgba(200, 175, 120, 0.07);
+  /* Background: #BDBCB0 warm stone, Primary: #448855 forest green */
+  --color-bg:           #bdbcb0;
+  --color-bg-soft:      #b2b1a5;
+  --color-bg-card:      #2a3d30;
+  --color-bg-card-alt:  #1e2b22;
+  --color-surface:      #344d3a;
+  --color-border:       rgba(68, 136, 85, 0.30);
+  --color-border-soft:  rgba(68, 136, 85, 0.15);
 
-  --color-gold:         #c8af78;
-  --color-gold-light:   #ddc99a;
-  --color-gold-dim:     #a08850;
-  --color-gold-muted:   rgba(200, 175, 120, 0.35);
+  /* Primary green */
+  --color-gold:         #448855;
+  --color-gold-light:   #5aa66b;
+  --color-gold-dim:     #336644;
+  --color-gold-muted:   rgba(68, 136, 85, 0.35);
 
-  --color-cream:        #f5f0e8;
-  --color-cream-soft:   #e8e0d0;
-  --color-warm-white:   #faf8f4;
+  /* Deep tones for text & dark cards */
+  --color-cream:        #ffffff;
+  --color-cream-soft:   #f0f5f1;
+  --color-warm-white:   #f5f3ee;
 
-  --color-text-primary:   #f0ead8;
-  --color-text-secondary: #b0a898;
-  --color-text-muted:     #6e6659;
-  --color-text-dim:       #4a4540;
+  --color-text-primary:   #ffffff;
+  --color-text-secondary: #e8ede9;
+  --color-text-muted:     #c2d0c5;
+  --color-text-dim:       #8aaa90;
 
   /* ── Typography ── */
-  --font-display:  'Cormorant Garamond', 'Cormorant', Georgia, serif;
-  --font-body:     'Jost', 'DM Sans', sans-serif;
-  --font-label:    'Jost', sans-serif;
+  --font-display:  'BlackMango', 'Georgia', serif;
+  --font-body:     'BlackMango', 'Georgia', serif;
+  --font-label:    'BlackMango', 'Georgia', serif;
 
   /* ── Spacing ── */
   --space-xs:   0.25rem;
@@ -62,11 +65,11 @@
   --duration-slower: 900ms;
 
   /* ── Shadows ── */
-  --shadow-sm:   0 2px 8px rgba(0, 0, 0, 0.4);
-  --shadow-md:   0 8px 32px rgba(0, 0, 0, 0.5);
-  --shadow-lg:   0 20px 60px rgba(0, 0, 0, 0.6);
-  --shadow-glow: 0 0 40px rgba(200, 175, 120, 0.12);
-  --shadow-gold: 0 4px 24px rgba(200, 175, 120, 0.2);
+  --shadow-sm:   0 2px 8px rgba(30, 43, 34, 0.12);
+  --shadow-md:   0 8px 32px rgba(30, 43, 34, 0.16);
+  --shadow-lg:   0 20px 60px rgba(30, 43, 34, 0.22);
+  --shadow-glow: 0 0 40px rgba(68, 136, 85, 0.15);
+  --shadow-gold: 0 4px 24px rgba(68, 136, 85, 0.25);
 
   /* ── Z-index ── */
   --z-below:   -1;
@@ -83,5 +86,5 @@
   --nav-height:       72px;
 
   /* ── Grain / Texture ── */
-  --grain-opacity: 0.035;
+  --grain-opacity: 0.018;
 }
