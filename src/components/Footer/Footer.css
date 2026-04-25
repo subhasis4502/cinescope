@@ -65,8 +65,9 @@
   font-family: var(--font-label);
   letter-spacing: 0.05em;
   text-transform: uppercase;
-  transition: border-color var(--duration-normal) var(--ease-out),
-              color var(--duration-normal) var(--ease-out);
+  transition:
+    border-color var(--duration-normal) var(--ease-out),
+    color var(--duration-normal) var(--ease-out);
 }
 
 .footer__social-link:hover {
@@ -134,18 +135,35 @@
 }
 
 /* ── Footer-scoped overrides (dark green bg) ── */
-.footer .footer__logo-main  { color: #f5f3ee; }
-.footer .footer__tagline    { color: rgba(189,188,176,0.6); }
-.footer .footer__social-link {
-  border-color: rgba(189,188,176,0.2);
-  color:         rgba(189,188,176,0.5);
+.footer .footer__logo-main {
+  color: #f5f3ee;
 }
-.footer .footer__col-links a { color: rgba(189,188,176,0.55); font-weight: 400; }
-.footer .footer__col-links a:hover { color: var(--color-gold-light); }
-.footer .footer__copy       { color: rgba(189,188,176,0.35); }
-.footer .footer__bottom-links a { color: rgba(189,188,176,0.35); }
-.footer .footer__bottom-links a:hover { color: rgba(189,188,176,0.6); }
-.footer .footer__bottom     { border-top-color: rgba(189,188,176,0.1); }
+.footer .footer__tagline {
+  color: rgba(189, 188, 176, 0.6);
+}
+.footer .footer__social-link {
+  border-color: rgba(189, 188, 176, 0.2);
+  color: rgba(189, 188, 176, 0.5);
+}
+.footer .footer__col-links a {
+  color: rgba(189, 188, 176, 0.55);
+  font-weight: 400;
+}
+.footer .footer__col-links a:hover {
+  color: var(--color-gold-light);
+}
+.footer .footer__copy {
+  color: rgba(189, 188, 176, 0.35);
+}
+.footer .footer__bottom-links a {
+  color: rgba(189, 188, 176, 0.35);
+}
+.footer .footer__bottom-links a:hover {
+  color: rgba(189, 188, 176, 0.6);
+}
+.footer .footer__bottom {
+  border-top-color: rgba(189, 188, 176, 0.1);
+}
 
 @media (max-width: 900px) {
   .footer__inner {
@@ -155,6 +173,16 @@
 }
 
 @media (max-width: 600px) {
+  .footer {
+    background: #1e2b22;
+    border-top: 1px solid rgba(68, 136, 85, 0.2);
+    padding: var(--space-lg) 0 var(--space-sm);
+  }
+
+  .footer__col-title {
+    font-size: 1rem;
+  }
+
   .footer__inner {
     grid-template-columns: 1fr;
     gap: var(--space-xl);
@@ -164,5 +192,9 @@
     flex-direction: column;
     gap: var(--space-md);
     text-align: center;
+  }
+
+  .footer__inner {
+    margin-bottom: var(--space-lg);
   }
 }

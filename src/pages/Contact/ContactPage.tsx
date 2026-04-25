@@ -5,20 +5,20 @@ const CONTACT_DETAILS = [
   {
     label: 'Email',
     sub: 'Contact us by email and we will respond shortly.',
-    value: 'hello@spotlightweddings.com',
-    href: 'mailto:hello@spotlightweddings.com',
+    value: 'cinescopeeditstudio@gmail.com',
+    href: 'mailto:cinescopeeditstudio@gmail.com',
   },
   {
     label: 'Phone',
     sub: 'Call us on weekdays from 9 AM to 6 PM.',
-    value: '+1 (555) 123-4567',
-    href: 'tel:+15551234567',
+    value: '+91 980-4444-244',
+    href: 'tel:+919804444244',
   },
   {
     label: 'Mobile',
     sub: 'WhatsApp available on weekdays from 9 AM to 8 PM.',
-    value: '+1 (555) 987-6543',
-    href: 'tel:+15559876543',
+    value: '+91 980-4444-244',
+    href: 'tel:+919804444244',
   },
   {
     label: 'Office',

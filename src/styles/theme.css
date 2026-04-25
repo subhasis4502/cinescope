@@ -185,11 +185,12 @@ input, textarea {
 .gold-line {
   background: var(--color-gold-light);
 }
+
 .container {
   width: 100%;
   max-width: var(--max-width);
   margin: 0 auto;
-  padding: 0 var(--space-xl);
+  padding: var(--space-xl);
 }
 
 .container--narrow {
@@ -251,6 +252,6 @@ input, textarea {
 /* ── Responsive ── */
 @media (max-width: 768px) {
   .container {
-    padding: 0 var(--space-lg);
+    padding: var(--space-lg);
   }
 }

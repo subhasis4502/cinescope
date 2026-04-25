@@ -46,8 +46,8 @@ export default function Footer() {
           <div className="footer__col">
             <h4 className="footer__col-title">Contact</h4>
             <ul className="footer__col-links">
-              <li><a href="mailto:hello@spotlightweddings.com">hello@cinescope.com</a></li>
-              <li><a href="tel:+15551234567">+1 (555) 123-4567</a></li>
+              <li><a href="mailto:hello@spotlightweddings.com">cinescopeeditstudio@gmail.com</a></li>
+              <li><a href="tel:+15551234567">+91 980-4444-244</a></li>
               <li><a href="#">Available Worldwide</a></li>
             </ul>
           </div>
