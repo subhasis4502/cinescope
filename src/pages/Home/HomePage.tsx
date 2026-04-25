@@ -19,7 +19,8 @@ const FEATURES = [
     title: 'Same-Day Edits',
     desc: 'A highlight reel delivered at your reception — so you can relive the magic before the night ends.',
     icon: '◈',
-    image: null,
+    image: 'https://images.unsplash.com/photo-1519741497674-611481863552?w=900&q=80',
+
   },
   {
     id: 'c',
@@ -40,11 +41,49 @@ const FEATURES = [
 ];
 
 const COUPLES = [
-  { id: 1, names: 'Ava & Marco', size: 'sm', img: 'https://images.unsplash.com/photo-1494774157365-9e04c6720e47?w=400&q=80' },
-  { id: 2, names: 'Priya & Rohan', size: 'md', img: 'https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=400&q=80' },
-  { id: 3, names: 'Emma & Luca', size: 'lg', img: 'https://images.unsplash.com/photo-1537633552985-df8429e8048b?w=400&q=80' },
-  { id: 4, names: 'Soph & James', size: 'md', img: 'https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?w=400&q=80' },
-  { id: 5, names: 'Mia & Carlos', size: 'sm', img: 'https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=400&q=80' },
+  {
+    id: 1,
+    names: 'Ava & Marco',
+    size: 'sm',
+    img: 'https://images.unsplash.com/photo-1494774157365-9e04c6720e47?w=400&q=80',
+    video: 'https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4',
+  },
+  {
+    id: 2,
+    names: 'Priya & Rohan',
+    size: 'md',
+    img: 'https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=400&q=80',
+    video: 'https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4',
+  },
+  {
+    id: 3,
+    names: 'Emma & Luca',
+    size: 'lg',
+    img: 'https://images.unsplash.com/photo-1537633552985-df8429e8048b?w=400&q=80',
+    video: 'https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4',
+  },
+  {
+    id: 4,
+    names: 'Soph & James',
+    size: 'md',
+    img: 'https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?w=400&q=80',
+    video: 'https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4',
+  },
+  {
+    id: 5,
+    names: 'Mia & Carlos',
+    size: 'sm',
+    img: 'https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=400&q=80',
+    video: 'https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4',
+  },
+];
+
+const HERO_BADGES = [
+  { label: 'Worldwide Travel', icon: '✦' },
+  { label: 'Cinematic 4K', icon: '◌' },
+  { label: 'Drone Coverage', icon: '△' },
+  { label: 'Same-Day Edits', icon: '◇' },
+  { label: 'Dolby Audio', icon: '◍' },
 ];
 
 const INITIAL_CENTERED_COUPLE_ID = COUPLES[Math.floor(COUPLES.length / 2)].id;
@@ -92,6 +131,12 @@ const STATS = [
   { num: '20', suffix: '+', label: 'Countries Covered', isImage: false },
 ];
 
+const FEATURED_FILM_FACTS = [
+  { label: 'Format', value: '7 minute cinematic feature' },
+  { label: 'Coverage', value: 'Multi-day destination celebration' },
+  { label: 'Approach', value: 'Documentary emotion with editorial framing' },
+];
+
 /* ─── Intersection Observer Hook ─────────────────── */
 function useInView(threshold = 0.15) {
   const ref = useRef<HTMLDivElement>(null);
@@ -119,6 +164,7 @@ export default function HomePage() {
   const testimonialsSection = useInView();
   const servicesSection = useInView();
   const testimonialsStripRef = useRef<HTMLDivElement>(null);
+  const coupleVideoRefs = useRef<Record<number, HTMLVideoElement | null>>({});
   const [centeredCoupleId, setCenteredCoupleId] = useState(INITIAL_CENTERED_COUPLE_ID);
 
   useEffect(() => {
@@ -187,6 +233,24 @@ export default function HomePage() {
     };
   }, []);
 
+  useEffect(() => {
+    COUPLES.forEach((couple) => {
+      const video = coupleVideoRefs.current[couple.id];
+      if (!video) return;
+
+      if (couple.id === centeredCoupleId) {
+        const playPromise = video.play();
+        if (playPromise) {
+          playPromise.catch(() => {});
+        }
+      } else {
+        video.pause();
+      }
+    });
+  }, [centeredCoupleId]);
+
+  const centeredCoupleIndex = COUPLES.findIndex((couple) => couple.id === centeredCoupleId);
+
   return (
     <div className="home-page">
 
@@ -230,10 +294,10 @@ export default function HomePage() {
         </div>
 
         <div className="hero__badges">
-          {['Worldwide Travel', 'Cinematic 4K', 'Drone Coverage', 'Same-Day Edits', 'Dolby Audio'].map(b => (
-            <div key={b} className="hero__badge">
-              <span className="hero__badge-dot" />
-              <span>{b}</span>
+          {HERO_BADGES.map(({ label, icon }) => (
+            <div key={label} className="hero__badge">
+              <span className="hero__badge-icon">{icon}</span>
+              <span>{label}</span>
             </div>
           ))}
         </div>
@@ -266,7 +330,7 @@ export default function HomePage() {
                 className={`feature-card feature-card--${f.variant}`}
                 style={{
                   animation: featuresSection.inView
-                    ? `fadeUp 0.7s cubic-bezier(0.16,1,0.3,1) ${i * 0.12}s both`
+                    ? `fadeUp 0.82s cubic-bezier(0.16,1,0.3,1) ${i * 0.14}s both`
                     : 'none'
                 }}
               >
@@ -303,7 +367,7 @@ export default function HomePage() {
                   className="stat-card stat-card--image"
                   style={{
                     animation: statsSection.inView
-                      ? `scaleIn 0.6s cubic-bezier(0.16,1,0.3,1) ${i * 0.08}s both`
+                      ? `scaleIn 0.48s cubic-bezier(0.16,1,0.3,1) ${i * 0.06}s both`
                       : 'none'
                   }}
                 >
@@ -315,7 +379,7 @@ export default function HomePage() {
                   className="stat-card"
                   style={{
                     animation: statsSection.inView
-                      ? `fadeUp 0.6s cubic-bezier(0.16,1,0.3,1) ${i * 0.08}s both`
+                      ? `fadeUp 0.5s cubic-bezier(0.16,1,0.3,1) ${i * 0.06}s both`
                       : 'none'
                   }}
                 >
@@ -352,23 +416,48 @@ export default function HomePage() {
           {/* Photo strip */}
           <div className="testimonials__strip" ref={testimonialsStripRef}>
             {COUPLES.map((c, i) => (
+              (() => {
+                const distanceFromCenter = Math.abs(i - centeredCoupleIndex);
+                const proximityClass =
+                  distanceFromCenter === 0
+                    ? ' is-centered'
+                    : distanceFromCenter === 1
+                      ? ' is-adjacent'
+                      : ' is-distant';
+
+                return (
               <div
                 key={c.id}
-                className={`couple-card couple-card--${c.size}${centeredCoupleId === c.id ? ' is-centered' : ''}`}
+                className={`couple-card couple-card--${c.size}${proximityClass}`}
                 data-couple-card="true"
                 data-couple-id={c.id}
                 style={{
                   animation: testimonialsSection.inView
-                    ? `fadeUp 0.7s cubic-bezier(0.16,1,0.3,1) ${i * 0.1}s both`
+                    ? `fadeUp 0.86s cubic-bezier(0.16,1,0.3,1) ${i * 0.12}s both`
                     : 'none'
                 }}
               >
-                <img src={c.img} alt={c.names} loading="lazy" />
+                <video
+                  className="couple-card__video"
+                  muted
+                  loop
+                  playsInline
+                  preload="metadata"
+                  poster={c.img}
+                  aria-label={`${c.names} wedding reel`}
+                  ref={(node) => {
+                    coupleVideoRefs.current[c.id] = node;
+                  }}
+                >
+                  <source src={c.video} type="video/mp4" />
+                </video>
                 <div className="couple-card__overlay" />
                 {centeredCoupleId === c.id && (
                   <div className="couple-card__names">{c.names}</div>
                 )}
               </div>
+                );
+              })()
             ))}
           </div>
 
@@ -380,7 +469,7 @@ export default function HomePage() {
                 className="quote-card"
                 style={{
                   animation: testimonialsSection.inView
-                    ? `fadeUp 0.7s cubic-bezier(0.16,1,0.3,1) ${0.3 + i * 0.15}s both`
+                    ? `fadeUp 0.9s cubic-bezier(0.16,1,0.3,1) ${0.34 + i * 0.16}s both`
                     : 'none'
                 }}
               >
@@ -408,30 +497,50 @@ export default function HomePage() {
               Featured Film
             </span>
             <h2 className="featured-film__title">Watch a love story unfold</h2>
+            <p className="featured-film__sub">
+              A quiet Lake Como weekend shaped into a film that lingers on atmosphere, glances, and the spaces between the vows.
+            </p>
           </div>
 
-          {/* Replace href with your Vimeo/YouTube embed or video */}
-          <a
-            className="featured-film__player"
-            href="https://vimeo.com/your-film-id"
-            target="_blank"
-            rel="noreferrer"
-          >
-            <img
-              className="featured-film__thumb"
-              src="https://images.unsplash.com/photo-1519741497674-611481863552?w=1400&q=85"
-              alt="Featured wedding film thumbnail"
-            />
-            <div className="featured-film__overlay">
-              <div className="featured-film__play-btn">
-                <div className="featured-film__play-icon" />
+          <div className="featured-film__layout">
+            {/* Replace href with your Vimeo/YouTube embed or video */}
+            <a
+              className="featured-film__player"
+              href="https://vimeo.com/your-film-id"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <img
+                className="featured-film__thumb"
+                src="https://images.unsplash.com/photo-1519741497674-611481863552?w=1400&q=85"
+                alt="Featured wedding film thumbnail"
+              />
+              <div className="featured-film__overlay">
+                <div className="featured-film__play-btn">
+                  <div className="featured-film__play-icon" />
+                </div>
+              </div>
+              <div className="featured-film__meta">
+                <div className="featured-film__couple">Emma & Luca</div>
+                <div className="featured-film__location">Lake Como, Italy · Summer 2024</div>
+              </div>
+            </a>
+
+            <div className="featured-film__details">
+              <p className="featured-film__kicker">Featured this season</p>
+              <p className="featured-film__description">
+                Designed to feel intimate rather than overstated, this piece leans into soft natural light, handwritten vows, and the stillness of the lakeside before the celebration opens up.
+              </p>
+              <div className="featured-film__facts">
+                {FEATURED_FILM_FACTS.map((fact) => (
+                  <div key={fact.label} className="featured-film__fact">
+                    <span className="featured-film__fact-label">{fact.label}</span>
+                    <span className="featured-film__fact-value">{fact.value}</span>
+                  </div>
+                ))}
               </div>
             </div>
-            <div className="featured-film__meta">
-              <div className="featured-film__couple">Emma & Luca</div>
-              <div className="featured-film__location">Lake Como, Italy · Summer 2024</div>
-            </div>
-          </a>
+          </div>
         </div>
       </section>
 
@@ -457,7 +566,7 @@ export default function HomePage() {
                   className="service-item"
                   style={{
                     animation: servicesSection.inView
-                      ? `fadeUp 0.6s cubic-bezier(0.16,1,0.3,1) ${0.1 + i * 0.1}s both`
+                      ? `fadeUp 0.62s cubic-bezier(0.16,1,0.3,1) ${0.08 + i * 0.09}s both`
                       : 'none'
                   }}
                 >
@@ -491,6 +600,7 @@ export default function HomePage() {
       <section className="cta-banner">
         <div className="container container--narrow">
           <div className="cta-banner__inner">
+            <span className="cta-banner__pill">2026 bookings now open</span>
             <p className="cta-banner__eyebrow">forever starts</p>
             <h2 className="cta-banner__title">
               Let's film your<br />love story
